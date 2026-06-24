@@ -6,8 +6,14 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+import { cloudflare } from "@cloudflare/vite-plugin";
+
 export default defineConfig({
-  plugins: [], // <--- THÊM ĐÚNG DÒNG NÀY VÀO ĐÂY ĐỂ HẾT LỖI WRANGLER
+  plugins: [cloudflare({
+    viteEnvironment: {
+      name: "ssr"
+    }
+  })], // <--- THÊM ĐÚNG DÒNG NÀY VÀO ĐÂY ĐỂ HẾT LỖI WRANGLER
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
